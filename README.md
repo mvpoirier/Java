@@ -1,2 +1,2 @@
-# java
-Java Doodles
+# Java
+A collection of Java doodles.
