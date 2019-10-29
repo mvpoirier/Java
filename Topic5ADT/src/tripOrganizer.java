@@ -1,3 +1,7 @@
+/*
+ * A short example of using OOP to create useful data structures.
+ */
+
 
 public class tripOrganizer {
 
