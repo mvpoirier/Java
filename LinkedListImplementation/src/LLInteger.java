@@ -71,6 +71,7 @@ public class LLInteger {
 	}
 }
 
+// A basic node object: contains data and pointer to next node.
 class Node {
 	
 	int data;
