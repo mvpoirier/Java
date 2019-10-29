@@ -1,5 +1,5 @@
 
-public class StaticTest {
+public class StaticStackTest {
 
 	public static void main(String[] args) {
 		StaticStack myStack1 = new StaticStack(5);
