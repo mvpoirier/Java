@@ -19,14 +19,17 @@ public class tripOrganizer {
 		suitcase[1] = sunscreen;
 		suitcase[2] = shoes;
 		
+		suitcase[2].setWeight(-5.2);
+		
 		// use a for loop to print all three luggageItems
 		System.out.println("I will bring the following items on my trip:\n");
 		for (int i = 0; i < suitcase.length; i++) {
 			System.out.println(suitcase[i].name);
 			System.out.println(suitcase[i].cost);
-			System.out.println(suitcase[i].weight + "\n");
+			System.out.println(suitcase[i].getWeight() + "\n");
 		}
 		
+		//System.out.println(args[0]);
 		System.exit(0);
 	}
 
@@ -35,7 +38,7 @@ public class tripOrganizer {
 class luggageItem{
 	
 	// luggageItems data members
-	public double weight;
+	private double weight;
 	public int cost;
 	public String name;
 	
@@ -44,5 +47,18 @@ class luggageItem{
 		this.name = name;
 		this.cost = cost;
 		this.weight = weight;
+	}
+	
+	public double getWeight () {
+		return weight;
+	}
+	
+	public void setWeight(double newWeight) {
+		if (newWeight > 0) {
+			this.weight = newWeight;
+		}
+		else {
+			System.out.println("Error: cannot have negative weight.");
+		}
 	}
 }

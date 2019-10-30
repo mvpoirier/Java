@@ -1,0 +1,3 @@
+Burrito,12
+Tortilla,Beans,Salsa,Cheese,Lettuce
+Warm torilla,Cook beans,Shred cheese,Fill burrito and serve
