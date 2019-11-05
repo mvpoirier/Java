@@ -6,11 +6,11 @@ public class LLIntegerTest {
 		
 		System.out.println(numList.isEmpty());
 		
-		numList.add(5);
+		numList.addFirst(5);
 		System.out.println(numList.isEmpty());
 		
-		numList.add(10);
-		numList.add(67);
+		numList.addFirst(10);
+		numList.addFirst(67);
 		
 		numList.print();
 		System.out.println("Size: " +  numList.size());

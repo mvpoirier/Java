@@ -2,11 +2,25 @@
 public class StaticStackTest {
 
 	public static void main(String[] args) {
-		StaticStack myStack1 = new StaticStack(5);
-		System.out.println(myStack1.data.length);
+		StaticStack myStack = new StaticStack(5);
 		
-		StaticStack myStack2 = new StaticStack(8);
-		System.out.println(myStack2.data.length);
+		System.out.println("Empty: " + myStack.isEmpty());
+		System.out.println("Full: " + myStack.isFull());
+		
+		myStack.push(5);
+		myStack.push(3);
+		myStack.push(1);
+		myStack.push(4);
+		myStack.push(7);
+		
+		myStack.push(99); // will not be added, stack is full
+		
+		System.out.println("Empty: " + myStack.isEmpty());
+		System.out.println("Full: " + myStack.isFull());
+		
+		while (myStack.isEmpty() == false) {
+			System.out.println(myStack.pop());
+		}
 	}
 
 }

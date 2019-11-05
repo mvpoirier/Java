@@ -9,23 +9,40 @@ public class StaticStack {
 		this.top = -1;
 	}
 	
-	public void push (int data) {
-		// TODO
+	public void push (int value) {
+		if(top < data.length - 1) {
+			top++;
+			data[top] = value;
+		}
 	}
 	
 	public int pop () {
-		// TODO
-		return 0;
+		if (top != -1) {
+			top--;
+			return data[top + 1];
+		}
+		else {
+			return -1;
+		}
+		
 	}
 	
 	public boolean isEmpty () {
-		// TODO
-		return true;
+		if (top == -1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 	
 	public boolean isFull () {
-		// TODO
-		return false;
+		if (top == data.length - 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-	
 }

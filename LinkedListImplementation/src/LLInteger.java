@@ -7,7 +7,7 @@ public class LLInteger {
 		this.head = null;
 	}
 	
-	public void add (int d) {
+	public void addFirst(int d) {
 		Node newNode = new Node(d);
 		
 		if (this.head == null) {
