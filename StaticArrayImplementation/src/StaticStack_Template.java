@@ -9,7 +9,7 @@ public class StaticStack_Template {
 		this.top = -1;
 	}
 	
-	public void push (int data) {
+	public void push (int value) {
 		// TODO
 	}
 	

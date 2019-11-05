@@ -7,7 +7,7 @@
  * 			Importance of IOExceptions when handling file input and output
  * 			How to use a comma separated value (.csv) file, generated from mockaroo.com
  * 
- * 			Also provides an OOP example with the Employee and Person classes
+ * 			Also provides a Linked List and OOP example with the Employee and Person classes
  */
 
 import java.io.IOException;
