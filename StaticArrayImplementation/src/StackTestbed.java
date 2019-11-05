@@ -1,9 +1,13 @@
 
-public class StaticStackTest {
+public class StackTestbed {
 
 	public static void main(String[] args) {
-		StaticStack myStack = new StaticStack(5);
 		
+		/*
+		 * Initializing a static 1D array Integer stack, and pushing/popping values.
+		 */
+		
+		StaticIntStack myStack = new StaticIntStack(5);
 		System.out.println("Empty: " + myStack.isEmpty());
 		System.out.println("Full: " + myStack.isFull());
 		
@@ -21,6 +25,10 @@ public class StaticStackTest {
 		while (myStack.isEmpty() == false) {
 			System.out.println(myStack.pop());
 		}
+		
+		System.out.println("*** Program completed successfully. ***");
+		System.exit(0);
+		
 	}
 
 }

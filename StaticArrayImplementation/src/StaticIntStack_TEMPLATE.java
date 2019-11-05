@@ -1,10 +1,10 @@
 
-public class StaticStack_Template {
+public class StaticIntStack_TEMPLATE { // TODO rename to StaticIntStack
 	
 	int[] data;
 	int top;
 	
-	public StaticStack_Template (int size) {
+	public StaticIntStack_TEMPLATE (int size) {
 		this.data = new int[size];
 		this.top = -1;
 	}
@@ -15,17 +15,14 @@ public class StaticStack_Template {
 	
 	public int pop () {
 		// TODO
-		return 0;
 	}
 	
 	public boolean isEmpty () {
 		// TODO
-		return true;
 	}
 	
 	public boolean isFull () {
 		// TODO
-		return false;
 	}
 	
 }

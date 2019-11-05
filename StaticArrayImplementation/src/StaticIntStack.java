@@ -1,10 +1,14 @@
 
-public class StaticStack {
+/*
+ * A 1D Array implementation of a stack, using Integers.
+ */
+
+public class StaticIntStack {
 	
 	int[] data;
 	int top;
 	
-	public StaticStack (int size) {
+	public StaticIntStack (int size) {
 		this.data = new int[size];
 		this.top = -1;
 	}
