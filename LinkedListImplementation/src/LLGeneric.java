@@ -1,20 +1,23 @@
 /*
- * Basic Linked List implementation of Integers
+ * Linked List implementation with Generic Type T
+ * https://stackoverflow.com/questions/21733811/how-to-make-a-new-object-of-type-t
+ * https://docs.oracle.com/javase/tutorial/java/generics/types.html
+ * https://www.geeksforgeeks.org/generics-in-java/
  */
-
 
 // TODO: implement JETS - add, remove(index), getFirst(), getLast() size(), isEmpty()
 
-public class LLInteger {
 
-	Node head;
+public class LLGeneric<T>{ // Linked List (LL) of type T
 	
-	public LLInteger () {
+	N<T> head; // Node (N) of type T
+	
+	public LLGeneric () {
 		this.head = null;
 	}
 	
-	public void add(int d) {
-		Node newNode = new Node(d);
+	public void add(T d) {
+		N<T> newNode = new N<T>(d);
 		
 		if (this.head == null) {
 			// if list empty, add player to the head (first)
@@ -22,7 +25,7 @@ public class LLInteger {
 		}
 		else {
 			// traverse until we're at the end of the list, then add new node
-			Node currNode = this.head;
+			N<T> currNode = this.head;
 			while (currNode.next != null) {
 				currNode = currNode.next;
 			}
@@ -30,14 +33,14 @@ public class LLInteger {
 		}
 	}
 	
-	public int removeFirst () {
+	public T removeFirst () {
 		// remove first value from the linked list, return it
 		// set new header to next node
 		// if empty, return -1
-		Node value;
+		N<T> value;
 		
 		if (this.head == null) {
-			return -1;
+			return null;
 		}
 		else {
 			value = this.head;
@@ -47,7 +50,7 @@ public class LLInteger {
 	}
 	
 	public void print () {
-		Node currNode = this.head;
+		N<T> currNode = this.head;
 		
 		if (this.isEmpty()) {
 			System.out.println("List is empty.");
@@ -63,7 +66,7 @@ public class LLInteger {
 	public int size () {
 		int size = 0;
 		
-		Node currNode = this.head;
+		N<T> currNode = this.head;
 		while (currNode != null) {
 			size++;
 			currNode = currNode.next;
@@ -75,21 +78,21 @@ public class LLInteger {
 	public boolean isEmpty () {
 		return (this.head == null);
 	}
+	
 }
 
 /*
- * A basic node object
- * Contains data (int) and pointer to next node.
+ * Basic Node (N) implementation of Generic Type T
  */
 
-class Node {
+class N<T>{
+
+	T data;
+	N<T> next;
 	
-	int data;
-	Node next;
-	
-	public Node (int d) {
+	public N (T d) {
+		// constructor
 		this.data = d;
 		this.next = null;
 	}
-	
 }
