@@ -34,7 +34,7 @@ public class ExpressionTest {
 				validExpression = ((char) expStack.pop() == '(');
 			}
 			else if (s.charAt(i) == ']') {
-				validExpression = ((char) expStack.pop() == '['); //popped objects are casted as char
+				validExpression = ((char) expStack.pop() == '['); //popped objects are casted as (char)
 			}
 			else if (s.charAt(i) == '}') {
 				validExpression = ((char) expStack.pop() == '{');
