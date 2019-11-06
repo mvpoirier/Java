@@ -26,6 +26,16 @@ public class StackTestbed {
 			System.out.println(myStack.pop());
 		}
 		
+		//Generic stack of type T = String
+		GenericStack<String> myStringStack = new GenericStack<String>(5);
+		myStringStack.push("hello");
+		System.out.println(myStringStack.pop());
+		
+		//Generic stack of type T = Double
+		GenericStack<Double> myDoubleStack = new GenericStack<Double>(3);
+		myDoubleStack.push(3.14);
+		System.out.println(myDoubleStack.pop());
+		
 		System.out.println("*** Program completed successfully. ***");
 		System.exit(0);
 		
