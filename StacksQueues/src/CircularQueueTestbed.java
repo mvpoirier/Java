@@ -8,8 +8,9 @@
 public class CircularQueueTestbed {
 	public static void main (String[] args) {
 		int value;
-		CircularIntQueue myQueue = new CircularIntQueue(5);
+		CircularIntQueue myQueue = new CircularIntQueue(5); //size 5
 		
+		// enqueue values
 		myQueue.print();
 		myQueue.enqueue(1);
 		myQueue.print();
@@ -25,6 +26,7 @@ public class CircularQueueTestbed {
 		myQueue.enqueue(99); // will be ignored, queue is full
 		myQueue.print();
 		
+		// dequeue values
 		value = myQueue.dequeue();
 		myQueue.print();
 		value = myQueue.dequeue();
