@@ -38,8 +38,6 @@ public class CircularIntQueue{
 			tail = (tail + 1) % q.length;
 			q[tail] = value;
 		}
-		
-
 	}
 	
 	/*
