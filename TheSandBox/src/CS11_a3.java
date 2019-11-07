@@ -2,8 +2,8 @@
 /*
  * Mike Poirier
  * November 7, 2019
- * Grade 11 DP Computer Science (Mr. Narayanan Cover)
- * Searching through random arrays (Assignment 3)
+ * Grade 11 DP Computer Science (Cover for Mr. Narayanan)
+ * Assignment 3 - Searching through arrays of random integers
  */
 
 import java.util.Scanner;
