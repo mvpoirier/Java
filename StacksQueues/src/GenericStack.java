@@ -11,8 +11,8 @@ public class GenericStack <T> {
 	public GenericStack (int size) {
 		//https://stackoverflow.com/questions/2927391/whats-the-reason-i-cant-create-generic-array-types-in-java
 		//this.data = new T[size];
-		//cannot explicitly create an array of generic type T (above), work around below...
-		this.data = (T[]) new Object[size];
+		//cannot explicitly create an array of generic type T (see above), work around below...
+		this.data = (T[]) new Object[size]; //create an array of objects, then cast to type T
 		this.top = -1;
 	}
 	
