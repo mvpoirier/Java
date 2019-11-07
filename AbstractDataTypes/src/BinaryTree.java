@@ -5,11 +5,14 @@
 
 public class BinaryTree {
 	public static void main (String[] args) {
-		BinaryIntTree myTree = new BinaryIntTree(5);
-		myTree.insert(4);
-		myTree.insert(6);
+		BinaryIntTree myTree = new BinaryIntTree(5); //myTree.data
+		myTree.insert(4); //myTree.left.data
+		myTree.insert(6); //myTree.right.data
+		myTree.insert(1); //myTree.left.left.data
+		myTree.insert(10); //myTree.right.right.data
 		System.out.println(myTree.contains(1));
 		System.out.println(myTree.contains(6));
+		System.out.println(myTree.contains(3));
 		myTree.printInOrder();
 	}
 }
@@ -63,7 +66,7 @@ class BinaryIntTree{
 		if (left != null) {
 			left.printInOrder();
 		}
-		System.out.println(data);
+		System.out.print(data + " ");
 		if (right != null) {
 			right.printInOrder();
 		}
