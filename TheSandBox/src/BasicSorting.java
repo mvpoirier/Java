@@ -1,12 +1,13 @@
 /**
- * @author Mike Poirier
- * @category Sorting Algorithms & Testing
- * @since April 7, 2019
+ * Implementation of basic sorting algorithms: Bubble, Selection, Insertion
+ * @author 		Mike Poirier
+ * @category 	Sorting Algorithms & Testing
+ * @since 		April 7, 2019 (Updated: November 12, 2019)
  */
 
 import java.util.Random;
 
-public class Sorting {
+public class BasicSorting {
 
 	static final int MAX_ARRAY_LENGTH = 10000;
 	static final int DATA_RANGE = 100;
@@ -16,7 +17,7 @@ public class Sorting {
 		int[] unSortedData = new int[MAX_ARRAY_LENGTH];
 		int[] sortedData = new int[MAX_ARRAY_LENGTH];
 		
-		// Create unSortedData Array
+		// Create a randomly unsorted array of integers
 		long startTime = System.nanoTime();
 		unSortedData = makeRandomArray(unSortedData.length, DATA_RANGE);
 		long elapsedTime = System.nanoTime() - startTime;
@@ -37,11 +38,21 @@ public class Sorting {
 		printArray(sortedData, ROW_LENGTH);
 		System.out.println("\nSelection Sort - Elapsed Time: " + elapsedTime/1000000 + " ms.\n");
 		
+		// Insertion Sort
+		startTime = System.nanoTime();
+		sortedData = insertionSort(unSortedData);
+		elapsedTime = System.nanoTime() - startTime;
+		printArray(sortedData, ROW_LENGTH);
+		System.out.println("\nInsertion Sort - Elapsed Time: " + elapsedTime/1000000 + " ms.\n");
+		
+		// Program exit
 		System.out.println("***Program Finished Successfully.***");
+		System.exit(0);
 	}
 
+	
 	/**
-	 * @method	Print Array
+	 * @method	Make a Random Array
 	 * @use 	Creates a random integer array with elements from 0 to range
 	 */
 	
@@ -55,6 +66,7 @@ public class Sorting {
 		
 		return randomArray;
 	}
+	
 	
 	/**
 	 * @method	Print Array
@@ -71,6 +83,7 @@ public class Sorting {
 		}
 	}
 
+	
 	/**
 	 * @method	Bubble Sort (or Sinking Sort)
 	 * @use 	Repeatedly steps through an array, compares adjacent pairs, 
@@ -98,6 +111,7 @@ public class Sorting {
 		return unSorted;
 	}
 
+	
 	/**
 	 * @method	Selection Sort
 	 * @use 	Go through the unsorted array and find the smallest value,
@@ -134,22 +148,29 @@ public class Sorting {
 		return sorted;
 	}
 	
+	
+	/**
+	 * @method	Insertion Sort
+	 * @use 	Pick element arr[i] and insert it into sorted sequence arr[0…i-1] 
+	 * 			Source: https://www.geeksforgeeks.org/insertion-sort/
+	 */
+	
 	public static int[] insertionSort (int[] unSorted) {
 		// TODO Insertion Sort
+		int n = unSorted.length;
+		
+		for (int i = 1; i < n; i++) {
+			int key = unSorted[i]; //get next item in the array
+			int j = i - 1;
+			
+			while (j >= 0 && unSorted[j] > key) { //compare will all items previously
+				unSorted[j+ 1] = unSorted[j];
+				j--;
+			}
+			
+			unSorted[j + 1] = key; //make final swap
+		}
 		
 		return unSorted;
 	}
-	
-	public static int[] mergeSort (int[] unSorted) {
-		// TODO Merge Sort
-		
-		return unSorted;
-	}
-	
-	public static int[] quickSort (int[] unSorted) {
-		// TODO Quicksort
-		
-		return unSorted;
-	}
-
 }
