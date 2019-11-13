@@ -1,11 +1,16 @@
+/*
+ * A public class/object containing Advanced multi-method sorting algorithms
+ * Contains: Merge Sort, Quick Sort
+ * @author	Mike Poirier
+ * @since	November 13, 2019
+ */
 
-public class AdvancedSorting {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+public class AdvSort {
 
+	public AdvSort () {
+		// TODO: constructor
 	}
-
 	
 	/**
 	 * @method	Merge Sort
