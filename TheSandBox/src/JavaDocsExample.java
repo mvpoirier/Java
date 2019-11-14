@@ -29,7 +29,7 @@ public class JavaDocsExample {
 		int sumAge, sumNetWorth;
 		Random r = new Random();
 		
-		Person mPoirier = new Person("Michael Poirier", 34);
+		Person mPoirier = new Person("Mike Poirier", 34);
 		Person bWheeler = new Person("Blake Wheeler", 33);
 		
 		BankAccount wGates = new BankAccount("Will Gates", 64, 107100); //in USD
