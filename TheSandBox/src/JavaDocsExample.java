@@ -11,11 +11,15 @@
  * @since 	2019-11-13 (Updated: 2019-11-14)
  * @version	0.1 (Beta)
  */
+
+import java.util.Random;
+
 public class JavaDocsExample {
 
 	/**
 	 * METHOD: 	main
-	 * PURPOSE:	Prints the sum of the ages of two people.
+	 * PURPOSE:	Prints the sum of two random numbers.
+	 * 			Prints the sum of the ages of two people.
 	 * 			Prints the sum of the net worth of two bank accounts.
 	 * 
 	 * @param 	String[] args	- arguments entered by user from command line
@@ -23,13 +27,16 @@ public class JavaDocsExample {
 	 */
 	public static void main(String[] args) {
 		int sumAge, sumNetWorth;
+		Random r = new Random();
 		
 		Person mPoirier = new Person("Michael Poirier", 34);
 		Person bWheeler = new Person("Blake Wheeler", 33);
 		
-		//bank account information in United States Dollars (USD)
-		BankAccount wGates = new BankAccount("Will Gates", 64, 107100);
+		BankAccount wGates = new BankAccount("Will Gates", 64, 107100); //in USD
 		BankAccount eBusk = new BankAccount("Elon Busk", 48, 23700);
+		
+		//print sum of two random numbers (each number is between 0 and 100)
+		System.out.println("Sum of two random integers: " + addNum(r.nextInt(100), r.nextInt(100)));
 		
 		//print sum of ages for Mike & Blake
 		sumAge = addNum(mPoirier.getAge(), bWheeler.getAge());
@@ -44,7 +51,6 @@ public class JavaDocsExample {
 		System.exit(0);
 	}
 
-	
 	/**
 	 * METHOD:	addNum
 	 * PURPOSE:	Adds two numbers together.
@@ -58,6 +64,7 @@ public class JavaDocsExample {
 	}
 
 }
+
 
 /**
  * CLASS:	Person
@@ -95,6 +102,7 @@ class Person {
 		return this.age;
 	}
 }
+
 
 /**
  * CLASS:	BankAccount
