@@ -1,51 +1,46 @@
 /**
- * javaDocsExample.java
+ * FILE:	TheSandBox/javaDocsExample.java
  * 
- * CLASS:	JavaDocsExample
- * PURPOSE:	Examples of how to comment correctly using javadocs in Eclipse.
- * 			Notice how javadoc comments start with /** instead of /*
- * 			Eclipse Preferences > Java > Code Style > Code Templates > Comments > Types
- * 			Source: https://www.tutorialspoint.com/java/java_documentation.htm
+ * PURPOSE:	Examples of how to comment correctly in Eclipse.
+ * 			Notice how Javadoc comments start with /** instead of /*
+ * 			
+ * ADVICE:	Eclipse: Preferences > Java > Code Style > Code Templates > Comments > Types
+ * 			Eclipse: Preferences > Java > Editor > Folding
+ * 			Eclipse: Option + Command + J > Auto-generate code element comment
+ * 			Eclipse: Select All Text (Command + A) & Correct Indentation (Command + I)
  * 
- * @author 	mpoirier
- * @since 	2019-11-13 (Updated: 2019-11-14)
- * @version	0.1 (Beta)
+ * SOURCE:	tutorialspoint.com/java/java_documentation.htm
+ * 			stackoverflow.com/questions/2612633/how-do-i-change-the-javadocs-template-generated-in-eclipse
+ * 
+ * @author 	github.com/mvpoirier
+ * @since 	2019-11-15
  */
 
 import java.util.Random;
 
 public class JavaDocsExample {
 
-	/**
-	 * METHOD: 	main
-	 * PURPOSE:	Prints the sum of two random numbers.
-	 * 			Prints the sum of the ages of two people.
-	 * 			Prints the sum of the net worth of two bank accounts.
-	 * 
-	 * @param 	String[] args	- arguments entered by user from command line
-	 * @return 	VOID
-	 */
 	public static void main(String[] args) {
 		int sumAge, sumNetWorth;
 		Random r = new Random();
-		
+
 		Person mPoirier = new Person("Mike Poirier", 34);
 		Person bWheeler = new Person("Blake Wheeler", 33);
-		
+
 		BankAccount wGates = new BankAccount("Will Gates", 64, 107100); //in USD
 		BankAccount eBusk = new BankAccount("Elon Busk", 48, 23700);
-		
-		//print sum of two random numbers (each number is between 0 and 100)
+
+		//print sum of two random numbers (each between 0 and 100)
 		System.out.println("Sum of two random integers: " + addNum(r.nextInt(100), r.nextInt(100)));
-		
+
 		//print sum of ages for Mike & Blake
 		sumAge = addNum(mPoirier.getAge(), bWheeler.getAge());
-		System.out.println("Sum of ages for Mike & Blake: " + sumAge);
-		
+		System.out.println("Combined ages of " + mPoirier.getName() + " & " + bWheeler.getName()+ ": " + sumAge);
+
 		//print sum of net worth for Will & Elon
 		sumNetWorth = addNum(wGates.getNetWorth(), eBusk.getNetWorth());
-		System.out.println("Sum of net worth for Will & Elon: " + sumNetWorth);
-		
+		System.out.println("Combined net worth of " + wGates.getName() + " & " + eBusk.getName()+ ": " + sumNetWorth);
+
 		//exit program
 		System.out.println("\n*** Program Completed Successfully. ***");
 		System.exit(0);
@@ -55,9 +50,9 @@ public class JavaDocsExample {
 	 * METHOD:	addNum
 	 * PURPOSE:	Adds two numbers together.
 	 * 
-	 * @param 	int a	- number 1
-	 * @param 	int b	- number 2
-	 * @return 	int		- The sum of a and b
+	 * @param 	int a
+	 * @param 	int b
+	 * @return 	int a + b
 	 */
 	public static int addNum (int a, int b) {
 		return a + b;
@@ -73,7 +68,7 @@ public class JavaDocsExample {
 class Person {
 	private String name;
 	private int age;
-	
+
 	/**
 	 * Constructor
 	 * @param String name	- first and last name
@@ -83,24 +78,44 @@ class Person {
 		this.name = name;
 		this.age = age;
 	}
+
+	/*
+	 * AUTO-GENERATE ACCESSORS AND MUTATORS IN ECLIPSE:
+	 * Eclipse: Menu Bar > Source > Generate Getters and Setters...
+	 */
 	
 	/**
-	 * METHOD:	getName
-	 * PURPOSE:	Getter method for name.
-	 * @return 	String	- the name of this person object
+	 * Accessor Method (Getter)
+	 * @return the name
 	 */
-	public String getName () {
-		return this.name;
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Mutator Method (Setter)
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Accessor Method (Getter)
+	 * @return the age
+	 */
+	public int getAge() {
+		return age;
+	}
+
+	/**
+	 * Mutator Method (Setter)
+	 * @param age the age to set
+	 */
+	public void setAge(int age) {
+		this.age = age;
 	}
 	
-	/**
-	 * METHOD:	getAge
-	 * PURPOSE:	Getter method for age.
-	 * @return	int	- the age of this person object.
-	 */
-	public int getAge () {
-		return this.age;
-	}
 }
 
 
@@ -111,7 +126,7 @@ class Person {
  */
 class BankAccount extends Person {
 	private int netWorth;
-	
+
 	/**
 	 * Constructor
 	 * Calls super class Person's constructor
@@ -123,13 +138,20 @@ class BankAccount extends Person {
 		super(name, age);
 		this.netWorth = netWorth;
 	}
-	
+
 	/**
-	 * METHOD:	getNetWorth
-	 * PURPOSE:	Getter method for netWorth
-	 * @return	int	- the total net worth of the account holder in USD
+	 * Accessor Method (Getter)
+	 * @return the netWorth (in USD)
 	 */
-	public int getNetWorth () {
-		return this.netWorth;
+	public int getNetWorth() {
+		return netWorth;
+	}
+
+	/**
+	 * Mutator Method (Setter)
+	 * @param netWorth the netWorth to set (in USD)
+	 */
+	public void setNetWorth(int netWorth) {
+		this.netWorth = netWorth;
 	}
 }
