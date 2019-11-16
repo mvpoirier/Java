@@ -1,6 +1,8 @@
 /**
  * FILE:	GraphicalUserInterfaces/FileApp.java
  * PURPOSE:	File > New > Other... > Window Builder > Swing Designer > Application Window
+ * 			How to open multiple JFrames: https://www.youtube.com/watch?v=xh6n4bIZEpQ
+ * 			How to open/save with JFileChooser: https://stackoverflow.com/questions/3548140/how-to-open-and-save-using-java
  *
  * @author 	github.com/mvpoirier
  * @since 	2019-11-15
@@ -14,6 +16,9 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JFileChooser;
+import java.io.File;
 
 /**
  * CLASS:	FileApp	
@@ -54,19 +59,37 @@ public class FileApp {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
+		frame.setTitle("FileApp");
 		
-		JLabel lblMyFileApplication = new JLabel("My File Application");
+		JLabel lblMyFileApplication = new JLabel("FileApp: GUIs and FILE I/O");
 		frame.getContentPane().add(lblMyFileApplication);
 		
-		JButton btnOpenFile = new JButton("Open File");
+		JButton btnOpenFile = new JButton("JFileChooser: OPEN & SAVE");
 		btnOpenFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				FileChooser fileWindow = new FileChooser(); //creates file chooser JFrame
-				fileWindow.setVisible(true);
+				JFileChooser fileChooser1 = new JFileChooser();
+				if (fileChooser1.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				  File file = fileChooser1.getSelectedFile();
+				  System.out.println("OPEN: " + file.getPath());
+				}
+				
+				JFileChooser fileChooser2 = new JFileChooser();
+				if (fileChooser2.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+				  File file = fileChooser2.getSelectedFile();
+				  System.out.println("SAVE: " + file.getPath());
+				}
 			}
 		});
+		
+		JButton btnNewForm = new JButton("New JFrame: FileAppForm2");
+		btnNewForm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FileAppForm2 frame2 = new FileAppForm2(frame);
+				frame2.setVisible(true); //show frame 2
+				frame.dispose(); //hide current frame
+			}
+		});
+		frame.getContentPane().add(btnNewForm);
 		frame.getContentPane().add(btnOpenFile);
 	}
-
 }
