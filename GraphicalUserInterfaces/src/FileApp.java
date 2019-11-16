@@ -20,10 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFileChooser;
 import java.io.File;
 
-/**
- * CLASS:	FileApp	
- * PURPOSE:	
- */
+
 public class FileApp {
 
 	private JFrame frame;
