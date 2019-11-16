@@ -41,9 +41,11 @@ public class FileAppForm2 extends JFrame {
 		JButton btnChangeFileappLabel = new JButton("Change FileApp Title");
 		btnChangeFileappLabel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				parentFrame.setTitle(textField.getText());
+				parentFrame.setTitle(parentFrame.getTitle() + textField.getText()); //append new title
 				parentFrame.setVisible(true);
-				setVisible(false);
+				
+				setVisible(false); //hide this frame
+				dispose();
 			}
 		});
 		contentPane.add(btnChangeFileappLabel, BorderLayout.CENTER);
