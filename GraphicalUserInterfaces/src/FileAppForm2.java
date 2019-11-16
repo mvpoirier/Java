@@ -1,6 +1,6 @@
 /**
  * FILE:	GraphicalUserInterfaces/FileAppForm2.java
- * PURPOSE:	Shows how 'child' JFrames can communicate with the parent JFrame
+ * PURPOSE:	Shows how 'child' JFrames can communicate with it's parent JFrame
  *
  * @author 	github.com/mvpoirier
  * @since 	2019-11-16
