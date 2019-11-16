@@ -77,7 +77,7 @@ public class CS11_a3 {
 			System.out.println();
 		}
 		
-		// confirm total counts from historgram
+		// confirm total counts from histogram
 		int total = 0;
 		for (int i = 0; i < bins.length; i++) {
 			total = total + bins[i];
