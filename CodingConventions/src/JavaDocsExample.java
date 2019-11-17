@@ -1,5 +1,5 @@
 /**
- * FILE:	TheSandBox/javaDocsExample.java
+ * FILE:	CodingConventions/javaDocsExample.java
  * 
  * PURPOSE:	Examples of how to comment correctly in Eclipse.
  * 			Notice how Javadoc comments start with /** instead of /*

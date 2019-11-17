@@ -24,6 +24,7 @@ import java.io.File;
 public class FileApp {
 
 	private JFrame frame;
+	private int netWorth;
 
 	/**
 	 * Launch the application.
@@ -64,12 +65,14 @@ public class FileApp {
 		JButton btnOpenFile = new JButton("JFileChooser: OPEN & SAVE");
 		btnOpenFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// OPEN FILE
 				JFileChooser fileChooser1 = new JFileChooser();
 				if (fileChooser1.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				  File file = fileChooser1.getSelectedFile();
 				  System.out.println("OPEN: " + file.getPath());
 				}
 				
+				// SAVE FILE
 				JFileChooser fileChooser2 = new JFileChooser();
 				if (fileChooser2.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 				  File file = fileChooser2.getSelectedFile();
@@ -81,7 +84,7 @@ public class FileApp {
 		JButton btnNewForm = new JButton("New JFrame: FileAppForm2");
 		btnNewForm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FileAppForm2 frame2 = new FileAppForm2(frame);
+				FileAppForm2 frame2 = new FileAppForm2(frame); //pass reference to this.frame to frame2
 				frame2.setVisible(true); //show frame 2
 				frame.dispose(); //hide current frame
 			}
