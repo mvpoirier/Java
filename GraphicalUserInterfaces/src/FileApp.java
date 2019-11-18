@@ -24,7 +24,6 @@ import java.io.File;
 public class FileApp {
 
 	private JFrame frame;
-	private int netWorth;
 
 	/**
 	 * Launch the application.
@@ -85,7 +84,7 @@ public class FileApp {
 		btnNewForm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FileAppForm2 frame2 = new FileAppForm2(frame); //pass reference to this.frame to frame2
-				frame2.setVisible(true); //show frame 2
+				frame2.setVisible(true); //show frame2
 				frame.dispose(); //hide current frame
 			}
 		});
