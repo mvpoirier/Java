@@ -12,7 +12,7 @@ import java.util.Scanner;
  * CLASS:	IfElse
  * PURPOSE:
  */
-public class IfElse {
+public class IfElseInput {
 
 	/**
 	 * METHOD:	main
@@ -23,16 +23,21 @@ public class IfElse {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 
-		System.out.println("Enter a number: ");
+		boolean gameOver = false;
 
-		int myNum = input.nextInt();
+		while (!gameOver) {
+			System.out.println("Enter a number: ");
+			int myNum = input.nextInt();
 
-		if (myNum % 2 == 0) {
-			System.out.println("Even!");
+
+			if (myNum % 2 == 0) {
+				System.out.println("Even!");
+			}
+			else {
+				System.out.println("Odd!");
+			}
 		}
-		else {
-			System.out.println("Odd!");
-		}
+
 
 		System.exit(0);
 
