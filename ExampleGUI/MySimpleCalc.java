@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class myCalculator {
+public class MySimpleCalc {
 
 	private JFrame frame;
 	private JTextField txtAddNum1;
@@ -30,7 +30,7 @@ public class myCalculator {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					myCalculator window = new myCalculator();
+					MySimpleCalc window = new MySimpleCalc();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class myCalculator {
 	/**
 	 * Create the application.
 	 */
-	public myCalculator() {
+	public MySimpleCalc() {
 		initialize();
 	}
 
