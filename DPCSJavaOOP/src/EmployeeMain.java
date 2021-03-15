@@ -18,8 +18,10 @@ public class EmployeeMain {
 		//Extra - sort by salary or id, then print
 		
 		//How are public and private variables different??
-		danil.name = "Faisal";
-		danil.id = 18;
+		
+		danil.name = "Faisal"; // ok: name is public
+		
+		danil.id = 18; // error: id is not visible - cannot directly change it from outside the class/object.
 	}
 
 }

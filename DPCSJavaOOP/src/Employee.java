@@ -17,24 +17,24 @@ public class Employee {
 	
 	// Constructor
 	Employee (String name, int age, String dob){
-		this.name = name; // If variable has same name, use keyword 'this'
+		this.name = name; // If parameter variable has same name, use keyword 'this'
 		this.age = age;
 		this.dob = dob;
 		
-		this.salary = -1.0; // Default to -1 if not set.
-		this.id = -1; // Default to -1 if not set.
+		// Default to -1 if not set.
+		this.salary = -1.0; 
+		this.id = -1;
 	}
 	
 	// Overloaded Constructor: an example of Polymorphism.
 	Employee (String n, int a, String d, double s, int i){
-		this (n, a, d); // Keyword 'this' to reference constructor
+		this (n, a, d); // Keyword 'this()' to reference constructor
 		
 		salary = s;
 		id = i;
 	}
 	
 	// Actions
-	
 	public double getSalary () {
 		return this.salary;
 	}
@@ -62,5 +62,5 @@ public class Employee {
 				"\nsalary: $" + salary +
 				"\nid: " + id + "\n";
 	}
-
+	
 }
