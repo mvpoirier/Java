@@ -6,7 +6,7 @@
 
 import java.util.Scanner;
 
-class PokeMain {
+class PokemonMain {
 	public static void main(String[] args) {
 
 		Pokemon pikachu = new Pokemon ("Pikachu", "Electric", 70, true);
