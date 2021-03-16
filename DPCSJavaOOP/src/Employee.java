@@ -28,8 +28,7 @@ public class Employee {
 	
 	// Overloaded Constructor: an example of Polymorphism.
 	Employee (String n, int a, String d, double s, int i){
-		this (n, a, d); // Keyword 'this()' to reference constructor
-		
+		this (n, a, d); // Keyword 'this()' to reference constructor		
 		salary = s;
 		id = i;
 	}

@@ -43,6 +43,7 @@ class PokemonMain {
 
 		System.out.print("Can this pokemon evolve? (true or false): ");
 		uEvolve = s.nextBoolean();
+		s.close();
 
 		uPoke = new Pokemon (uName, uType, uHealth, uEvolve);
 		uPoke.dodge(25);
