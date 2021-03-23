@@ -55,7 +55,7 @@ public class TopMenuGUI {
 		frmJpanelSwitcher.getContentPane().setLayout(null);
 		
 		/*
-		 * ADD CONTENTS
+		 * TOP PANEL
 		 */
 		JPanel panelTop = new JPanel();
 		panelTop.setBackground(SystemColor.scrollbar);
@@ -73,6 +73,17 @@ public class TopMenuGUI {
 		JButton btnPanel3 = new JButton("JPanel 3");
 		panelTop.add(btnPanel3);
 		btnPanel3.setEnabled(true);
+		frmJpanelSwitcher.setBackground(Color.WHITE);
+		frmJpanelSwitcher.setBounds(100, 100, 450, 300);
+		frmJpanelSwitcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		btnPanel1.setEnabled(false);
+		btnPanel2.setEnabled(true);
+		btnPanel3.setEnabled(true);
+		
+		/*
+		 * BOTTOM PANEL
+		 */
 		
 		JPanel panelBottom = new JPanel();
 		panelBottom.setBackground(new Color(204, 204, 255));
@@ -82,7 +93,7 @@ public class TopMenuGUI {
 		
 		JPanel panelOne = new JPanel();
 		panelOne.setBackground(new Color(153, 204, 0));
-		panelBottom.add(panelOne, "name_164445894221408");
+		panelBottom.add(panelOne, "panelOne");
 		panelOne.setLayout(null);
 		
 		JLabel lblPanel1 = new JLabel("JPanel 1");
@@ -93,40 +104,31 @@ public class TopMenuGUI {
 		
 		JPanel panelTwo = new JPanel();
 		panelTwo.setBackground(new Color(255, 204, 0));
-		panelBottom.add(panelTwo, "name_164495310504530");
-		panelTwo.setLayout(new CardLayout(0, 0));
+		panelBottom.add(panelTwo, "panelTwo");
+		panelTwo.setLayout(null);
 		
 		JLabel lblPanel2 = new JLabel("JPanel 2");
-		panelTwo.add(lblPanel2, "name_165629012785257");
+		lblPanel2.setBounds(0, 0, 450, 240);
+		panelTwo.add(lblPanel2);
 		lblPanel2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPanel2.setFont(new Font("Lucida Grande", Font.BOLD, 24));
 		
 		JPanel panelThree = new JPanel();
 		panelThree.setBackground(new Color(153, 204, 255));
-		panelBottom.add(panelThree, "name_164513744678334");
-		panelThree.setLayout(new CardLayout(0, 0));
+		panelBottom.add(panelThree, "panelThree");
+		panelThree.setLayout(null);
 		
 		JLabel lblPanel3 = new JLabel("JPanel 3");
-		panelThree.add(lblPanel3, "name_165716939047155");
+		lblPanel3.setBounds(0, 0, 450, 240);
+		panelThree.add(lblPanel3);
 		lblPanel3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPanel3.setFont(new Font("Lucida Grande", Font.BOLD, 24));
-		frmJpanelSwitcher.setBackground(Color.WHITE);
-		frmJpanelSwitcher.setBounds(100, 100, 450, 300);
-		frmJpanelSwitcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		/*
-		 * INITIAL SETUP
-		 */
 		panelOne.setVisible(true);
 		panelTwo.setVisible(false);
 		panelThree.setVisible(false);
 		
-		btnPanel1.setEnabled(false);
-		btnPanel2.setEnabled(true);
-		btnPanel3.setEnabled(true);
-		
 		/*
-		 * ACTIONS PERFORMED (BUTTONS)
+		 * ACTIONS PERFORMED (JBUTTONS)
 		 */
 		
 		btnPanel1.addActionListener(new ActionListener() {
@@ -140,7 +142,8 @@ public class TopMenuGUI {
 				btnPanel3.setEnabled(true);
 				
 				// Providing the parent JFrame will center message on that frame.
-				JOptionPane.showMessageDialog(frmJpanelSwitcher, "Switching to Panel 1!");
+				// This overloaded constructor also provides a window title, and the type of message.
+				JOptionPane.showMessageDialog(frmJpanelSwitcher, "There has been an error.", "Error!", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		
