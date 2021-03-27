@@ -18,7 +18,6 @@ public class JFrameTwo extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblCounter; // Exposed component to be changed by JFrameMain
-
 	
 	// *** REMOVED public static void main()... method for second JFrame! ***
 

@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -159,6 +161,7 @@ public class MySimpleCalc {
 				}
 				catch (Exception ex) {
 					lblAddSum.setText("Error!");
+					JOptionPane.showMessageDialog(frame, "Invalid input provided.", "Error!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
