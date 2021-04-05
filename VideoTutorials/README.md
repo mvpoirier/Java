@@ -12,7 +12,8 @@ If a video has an initial setup or framework completed, that file will be indica
 **2. Address Book GUI**
 - A comprehensive JPanel GUI using OOP and File I/O (Eclipse IDE & WindowBuilder).
 - This is a complete program, indicative of the complexity and work you will need to complete for the DP Computer Science Internal Assessment.
-- **Address.java**: The Address class - first, last, age, country, phone, email
+- **Address.java**: The Address class, containing information for each contact: first, last, age, country, phone, email
 - **BEGIN**: Has initial GUI components setup already (no actions).
+- **PART1**: Actions for some JButtons and Window Listeners (On closing...) have been added.
 - **FINAL**: Completed program.
 - **Video Tutorial Link**: N/A
