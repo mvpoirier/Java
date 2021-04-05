@@ -1,0 +1,31 @@
+Employee List for MY COMPANY, with Salaries:
+Brandie, Bruhnke, Female, Data Coordiator, Indonesia, $10000
+Raimundo, Wixon, Male, Editor, Sweden, $60000
+Shellie, Courtonne, Female, Librarian, Russia, $50000
+Kyla, Clopton, Female, Assistant Media Planner, China, $0
+Waverly, Thurstan, Male, Environmental Tech, China, $20000
+Bernadette, Ollarenshaw, Female, Legal Assistant, Namibia, $0
+Wendall, Chilvers, Male, Geological Engineer, Nigeria, $30000
+Andra, Nutbeam, Female, Research Nurse, China, $90000
+Margarete, Wormald, Female, Web Developer I, Indonesia, $70000
+Anstice, Mulberry, Female, Executive Secretary, Philippines, $90000
+Tammy, Gibling, Male, Senior Sales Associate, Netherlands, $10000
+Arielle, Harroway, Female, Physical Therapy Assistant, China, $50000
+Lilas, Ouchterlony, Female, Help Desk Operator, Denmark, $10000
+Debra, McSpirron, Female, Programmer III, China, $30000
+Zsazsa, Redon, Female, VP Accounting, China, $50000
+Josi, Clapison, Female, Office Assistant I, Thailand, $90000
+Orren, Hissie, Male, Staff Accountant I, El Salvador, $40000
+Haydon, Lanning, Male, Automation Specialist II, Indonesia, $40000
+Tedie, Dewhurst, Male, Executive Secretary, Indonesia, $20000
+Neely, Lighterness, Female, Account Representative III, Bosnia and Herzegovina, $0
+Martie, Noddings, Male, Occupational Therapist, Mexico, $20000
+Mano, Spaunton, Male, Associate Professor, Croatia, $70000
+Sydney, Adderley, Female, VP Accounting, Indonesia, $80000
+Jozef, Steptoe, Male, Community Outreach Specialist, Portugal, $40000
+Sal, Lerego, Male, Engineer III, Brazil, $70000
+Igor, Forsey, Male, Nuclear Power Engineer, China, $0
+Moses, Belf, Male, Senior Editor, Portugal, $90000
+Prescott, Dranfield, Male, Editor, Uzbekistan, $40000
+Avictor, Niblo, Male, Nurse, Honduras, $20000
+Vivyan, Morrad, Female, Nurse Practicioner, Indonesia, $30000

@@ -12,11 +12,4 @@ public class ForceMain {
 		// Method below will not work: private data members
 		// printForce(soccerKick.mass, soccerKick.acceleration);
 	}
-
-	/*
-	public static void printForce (double m, double a) {
-		System.out.println("force = " + (m * a));
-	}
-	 */
-
 }

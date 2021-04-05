@@ -54,6 +54,6 @@ public class FantasyTeam {
 			}
 		}
 		
-		System.out.println("\n***A total of " + num + " players were found.***");
+		System.out.println("***A total of " + num + " players were found.***\n");
 	}
 }
