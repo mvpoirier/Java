@@ -1,7 +1,7 @@
 import java.util.Arrays; //toString
-import java.util.Random; //create 2D array of random numbers
+//import java.util.Random; //create 2D array of random numbers
 
-public class Array2D {
+public class Array2D_TEMPLATE {
 
 	public static void main(String[] args) {
 		int[][] a = new int[2][2];

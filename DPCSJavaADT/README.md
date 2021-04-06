@@ -9,3 +9,6 @@
 - Binary Trees
 - Stacks
 - Queues
+
+**NOTE**
+Some files are declared as 'TEMPLATE' and are unfinished student coding exercises.

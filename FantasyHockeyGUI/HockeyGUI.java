@@ -64,6 +64,7 @@ public class HockeyGUI extends JFrame {
 			FantasyTeam.insert(mockarooTeam, newPlayer);
 			teamNum++;
 		}
+		br.close();
 		FantasyTeam.printTeam(mockarooTeam);
 
 		// Ask user which team (wpgJets or mockarooTeam) to use with JOptionPane prompt.

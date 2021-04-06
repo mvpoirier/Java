@@ -25,7 +25,7 @@ public class Array1D {
 		
 		printArray(a); // printArray method
 		
-		//System.out.println(Arrays.toString(a)); // using built-in java.util.Arrays method
+		System.out.println(Arrays.toString(a)); // using built-in java.util.Arrays method
 		
 		//System.out.println(Arrays.toString(a).substring(1, Arrays.toString(a).length()-1)); // using built-in java.util.Arrays method
 		

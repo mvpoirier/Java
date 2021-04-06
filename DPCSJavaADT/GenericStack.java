@@ -8,6 +8,7 @@ public class GenericStack <T> {
 	T[] data;
 	int top;
 	
+	@SuppressWarnings("unchecked")
 	public GenericStack (int size) {
 		//https://stackoverflow.com/questions/2927391/whats-the-reason-i-cant-create-generic-array-types-in-java
 		//this.data = new T[size];
