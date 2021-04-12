@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants; // Message dialog windows
 
 public class SimpleCalc2 {
 
@@ -82,7 +84,8 @@ public class SimpleCalc2 {
 		panelAdd.add(txtAdd2);
 		
 		JLabel lblAddSum = new JLabel("Enter two numbers...");
-		lblAddSum.setBounds(161, 123, 150, 16);
+		lblAddSum.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAddSum.setBounds(85, 123, 272, 16);
 		panelAdd.add(lblAddSum);
 		
 		JButton btnAdd = new JButton("Add!");
@@ -151,7 +154,8 @@ public class SimpleCalc2 {
 				}
 				catch (Exception ex){
 					// If there is an error, do this instead...
-					lblAddSum.setText("Error! Try again.");
+					lblAddSum.setText("Incorrect input! Please try again.");
+					JOptionPane.showMessageDialog(frame, "Error!");
 					System.out.println(ex.toString());
 				}
 			}
