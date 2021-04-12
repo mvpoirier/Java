@@ -1,6 +1,6 @@
-# Video Tutorials
+# Tutorials
 
-A collection of source code used to create video tutorials used in-class, or shared publicly on YouTube.
+A collection of source code used to create tutorials used for DP Computer Science.
 
 If a video has an initial setup or framework completed, that file will be indicated with 'BEGIN', and the completed program will be indicated with 'FINAL'.
 

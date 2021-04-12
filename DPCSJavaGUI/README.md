@@ -8,7 +8,8 @@ These examples are used to provide inspiration on how to use the **WindowBuilder
 **JPanels with CardLayout GUIs (Highly Recommended!)**:
 1. MyJPanelApp
 2. TopMenuGUI
-3. MySimpleCalc
+3. SimpleCalc1
+4. SimpleCalc2
 
 **Single JFrame GUIs (Simple Examples)**:
 - GuessNumber

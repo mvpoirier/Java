@@ -1,8 +1,13 @@
-import java.awt.EventQueue;
+/*
+ * NAME:	Mr. Poirier
+ * DATE:	2021-04-12
+ * PURPOSE:	An example of using JPanels with a top menu,
+ * 			to develop a simple calculator.
+ */
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -12,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
-public class SimpleAdder {
+public class SimpleCalc2 {
 
 	private JFrame frame;
 	private JTextField txtAdd1;
@@ -25,7 +30,7 @@ public class SimpleAdder {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SimpleAdder window = new SimpleAdder();
+					SimpleCalc2 window = new SimpleCalc2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +42,7 @@ public class SimpleAdder {
 	/**
 	 * Create the application.
 	 */
-	public SimpleAdder() {
+	public SimpleCalc2() {
 		initialize();
 	}
 
@@ -50,7 +55,7 @@ public class SimpleAdder {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		// COMPONENTS
+		// GUI COMPONENTS
 		
 		JPanel panelMain = new JPanel();
 		panelMain.setBounds(0, 46, 450, 232);
@@ -114,7 +119,7 @@ public class SimpleAdder {
 		JButton btnTopMod = new JButton("Mod");
 		panelTop.add(btnTopMod);
 		
-		// ACTIONS
+		// GUI ACTIONS
 		
 		btnTopAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
