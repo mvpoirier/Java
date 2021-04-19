@@ -26,42 +26,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-// JOPTIONPANE DIALOG BOXES
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon; // Add custom dialog icon
-
-// JFILECHOOSER
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-
-// FILE I/O & Exceptions
-import java.io.IOException;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-
-// LINKED LIST
-import java.util.LinkedList;
-
 
 public class AddressBookPART1 {
 
 	private JFrame frmAddressBookTutorial;
-	private LinkedList<Address> contactList = new LinkedList<Address>();
-
-	/*
-	 * SETUP JFileChooser
-	 * https://stackoverflow.com/q/21844188/11542212
-	 */
-    private int returnVal;
-	private File workingDirectory = new File(System.getProperty("user.dir")); // Current working directory
-	private JFileChooser chooser = new JFileChooser(workingDirectory);
-    private FileNameExtensionFilter filter = new FileNameExtensionFilter("Contacts (.csv, .txt)", "csv", "txt");
     
 	/**
 	 * Launch the application.
@@ -93,8 +61,7 @@ public class AddressBookPART1 {
 		frmAddressBookTutorial = new JFrame();
 		frmAddressBookTutorial.setTitle("Address Book Tutorial");
 		frmAddressBookTutorial.setBounds(100, 100, 586, 364);
-		//frmAddressBookTutorial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmAddressBookTutorial.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frmAddressBookTutorial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddressBookTutorial.getContentPane().setLayout(null);
 		
 		JPanel top = new JPanel();
@@ -158,7 +125,7 @@ public class AddressBookPART1 {
 		main.add(view, "name_14353414839215");
 		view.setLayout(null);
 		
-		JList viewList = new JList();
+		JList<String> viewList = new JList<String>();
 		viewList.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		viewList.setBounds(6, 18, 136, 233);
 		view.add(viewList);
@@ -332,29 +299,6 @@ public class AddressBookPART1 {
 		 * ACTION LISENTERS
 		 */
 		
-		frmAddressBookTutorial.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// WINDOW CLOSING > DOUBLE-CHECK EXIT...
-				Object[] options = {"Yep!", "Nope."};
-		        ImageIcon icon = new ImageIcon("icon_exit.png");
-				int exitCheck = JOptionPane.showOptionDialog(frmAddressBookTutorial, // parent
-						"Are you sure you want to exit?\nAny unsaved contacts will be lost!", // message
-						"Exit Confirmation", // title
-						JOptionPane.YES_NO_OPTION, // option type
-						JOptionPane.WARNING_MESSAGE, // type of message
-						icon, // custom icon or null (javax.swing.ImageIcon)
-						options, // list of options or null
-						options[1]); // default button selected or null
-				
-				if (exitCheck == 0) // If YES (0) is selected...
-				{
-					System.out.println("*** Program ended successfully. ***");
-					System.exit(0);
-				}
-			}
-		});
-		
 		btnMenuView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// SHOW VIEW JPANEL
@@ -378,26 +322,12 @@ public class AddressBookPART1 {
 		btnMenuLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// LOAD/OPEN FILE...
-			    chooser.setFileFilter(filter);
-				returnVal = chooser.showOpenDialog(frmAddressBookTutorial);
-			    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			       // Print to console the absolute path and filename
-			    	System.out.println("You chose to open " + 
-			    		   chooser.getSelectedFile().getName() + ": " +
-			    		   chooser.getSelectedFile().getAbsolutePath());
-			    }
 			}
 		});
 		
 		btnMenuSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// SAVE FILE...
-			    chooser.setFileFilter(filter);
-				returnVal = chooser.showSaveDialog(frmAddressBookTutorial);
-			    if(returnVal == JFileChooser.APPROVE_OPTION) {
-				       System.out.println("You chose to save " + chooser.getSelectedFile().getName() + ": " +
-					            chooser.getSelectedFile().getAbsolutePath()); // Absolute Path & Filename
-			    }
 			}
 		});
 		
