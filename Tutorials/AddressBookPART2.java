@@ -321,6 +321,29 @@ public class AddressBookPART2 {
 		 * ACTION LISENTERS
 		 */
 		
+		// PART 1: SIDE PANEL > SHOW VIEW JPANEL
+		btnMenuView.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// SHOW VIEW JPANEL
+				view.setVisible(true);
+				add.setVisible(false);
+				btnMenuView.setEnabled(false);
+				btnMenuAdd.setEnabled(true);
+			}
+		});
+		
+		// PART 1: SIDE PANEL > SHOW ADD JPANEL
+		btnMenuAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// SHOW ADD JPANEL
+				view.setVisible(false);
+				add.setVisible(true);
+				btnMenuView.setEnabled(true);
+				btnMenuAdd.setEnabled(false);
+			}
+		});
+		
+		// PART 2: WINDOW CLOSING > DOUBLE-CHECK EXIT...
 		frmAddressBookTutorial.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -344,29 +367,9 @@ public class AddressBookPART2 {
 			}
 		});
 		
-		btnMenuView.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// SHOW VIEW JPANEL
-				view.setVisible(true);
-				add.setVisible(false);
-				btnMenuView.setEnabled(false);
-				btnMenuAdd.setEnabled(true);
-			}
-		});
-		
-		btnMenuAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// SHOW ADD JPANEL
-				view.setVisible(false);
-				add.setVisible(true);
-				btnMenuView.setEnabled(true);
-				btnMenuAdd.setEnabled(false);
-			}
-		});
-		
+		// PART 2: SIDE PANEL > LOAD FILE... (Incomplete)
 		btnMenuLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// LOAD/OPEN FILE...
 			    chooser.setFileFilter(filter);
 				returnVal = chooser.showOpenDialog(frmAddressBookTutorial);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -374,50 +377,22 @@ public class AddressBookPART2 {
 			    	System.out.println("You chose to open " + 
 			    		   chooser.getSelectedFile().getName() + ": " +
 			    		   chooser.getSelectedFile().getAbsolutePath());
+			    	System.out.println("LOAD IS NOT CODED YET.");
 			    }
 			}
 		});
 		
+		// PART 2: SIDE PANEL > SAVE FILE... (Incomplete)
 		btnMenuSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// SAVE FILE...
 			    chooser.setFileFilter(filter);
 				returnVal = chooser.showSaveDialog(frmAddressBookTutorial);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 				       System.out.println("You chose to save " + chooser.getSelectedFile().getName() + ": " +
 					            chooser.getSelectedFile().getAbsolutePath()); // Absolute Path & Filename
+				    	System.out.println("SAVE IS NOT CODED YET.");
+
 			    }
-			}
-		});
-		
-		
-		btnViewNext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// VIEW > NEXT CONTACT in LIST...
-			}
-		});
-		
-		btnViewPrev.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// VIEW > PREVIOUS CONTACT in LIST...
-			}
-		});
-		
-		btnViewDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// VIEW > DELETE SELECTED CONTACT...
-			}
-		});
-		
-		btnAddContact.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// ADD > ADD CONTACT
-			}
-		});
-		
-		btnSort.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// VIEW > SORT CONTACTS...
 			}
 		});
 	}

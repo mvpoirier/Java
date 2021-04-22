@@ -301,6 +301,7 @@ public class AddressBookPART1 {
 		 * ACTION LISENTERS
 		 */
 		
+		// PART 1: SIDE PANEL > SHOW VIEW JPANEL
 		btnMenuView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// SHOW VIEW JPANEL
@@ -311,6 +312,7 @@ public class AddressBookPART1 {
 			}
 		});
 		
+		// PART 1: SIDE PANEL > SHOW ADD JPANEL
 		btnMenuAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// SHOW ADD JPANEL
@@ -320,48 +322,5 @@ public class AddressBookPART1 {
 				btnMenuAdd.setEnabled(false);
 			}
 		});
-		
-		btnMenuLoad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// LOAD/OPEN FILE...
-			}
-		});
-		
-		btnMenuSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// SAVE FILE...
-			}
-		});
-		
-		btnSort.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// VIEW > SORT CONTACTS...
-			}
-		});
-		
-		btnViewNext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// VIEW > NEXT CONTACT in LIST...
-			}
-		});
-		
-		btnViewPrev.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// VIEW > PREVIOUS CONTACT in LIST...
-			}
-		});
-		
-		btnViewDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// VIEW > DELETE SELECTED CONTACT...
-			}
-		});
-		
-		btnAddContact.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// ADD > ADD CONTACT
-			}
-		});
-		
 	}
 }

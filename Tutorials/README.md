@@ -12,6 +12,7 @@ A collection of source code for tutorials used in teaching DP Computer Science.
 - This is a complete program, indicative of the complexity and work you will need to complete for the DP Computer Science Internal Assessment.
 - **Address.java**: The Address class, containing information for each contact: first, last, age, country, phone, email
 - **PART1**: Has initial JPanels and GUI components already setup to begin the tutorial.
-- **PART2**: Basic actions have been added for buttons, JFileChooser, and Window Listeners.
-- **PART3**: Reading/writing files in order to create, sort, and display Address objects.
-- **Video Tutorial Playlist**: N/A
+- **PART2**: Basic actions for JButtons, JFileChooser load/save prompts, and Window Listeners.
+- **PART3**: Load contacts, display in a JList, select contacts, and sort by age and name.
+- **PART4**: Add, delete, and save contacts.
+- **Video Tutorial Link**: N/A

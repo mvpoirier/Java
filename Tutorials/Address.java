@@ -1,7 +1,8 @@
 
 /*
  * NAME:	Mr. Poirier
- * DATE:	March 23, 2021
+ * DATE:	March 23, 2021 (Created)
+ * 			April 22, 2021 (Updated)
  * PURPOSE: Address class to handle each object from the CSV file.
  */
 
@@ -13,6 +14,7 @@ public class Address {
 	private String country;
 	private String phone;
 	private String email;
+	// date of birth object (month, day, year)?
 	
 	Address (String f, String l, int a, String c, String p, String e){
 		this.first = f;
@@ -42,7 +44,8 @@ public class Address {
 	
 	@Override
 	public String toString() {
-		return first + " " + last + " " + age + " " + country + " " + phone + " " + email + "\n";
+		// A comma-separated String to support output to a file (e.g. PrintWriter)
+		return first + "," + last + "," + age + "," + country + "," + phone + "," + email;
 	}
 	
 }

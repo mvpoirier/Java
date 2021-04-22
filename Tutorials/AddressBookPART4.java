@@ -3,14 +3,10 @@
  * DATE:	April 22, 2021
  * PURPOSE: Tutorial on how to use GUIs, File IO, and Try/Catch Exceptions 
  * 			in order to read/write to a CSV file efficiently.
- * 
- * 			PART 3 - Load contacts, display in a JList, select contacts, and sort by age and name.
+ *
+ * 			PART 4 - Add, Delete, and Save contacts.
  */
 
-
-// Organize Required Imports in Eclipse: Source -> Organize Imports (Command + Shift + O)
-
-// Correct Indentation: Source -> Correct Indentation (Command + I)
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -28,12 +24,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -58,7 +56,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
-public class AddressBookPART3 {
+public class AddressBookPART4 {
 
 	private JFrame frmAddressBookTutorial;
 	private LinkedList<Address> contactList = new LinkedList<Address>();
@@ -79,7 +77,7 @@ public class AddressBookPART3 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddressBookPART3 window = new AddressBookPART3();
+					AddressBookPART4 window = new AddressBookPART4();
 					window.frmAddressBookTutorial.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -91,7 +89,7 @@ public class AddressBookPART3 {
 	/**
 	 * Create the application.
 	 */
-	public AddressBookPART3() {
+	public AddressBookPART4() {
 		initialize();
 	}
 
@@ -100,7 +98,7 @@ public class AddressBookPART3 {
 	 */
 	private void initialize() {
 		frmAddressBookTutorial = new JFrame();
-		frmAddressBookTutorial.setTitle("Address Book Tutorial - PART 3");
+		frmAddressBookTutorial.setTitle("Address Book Tutorial - PART 4");
 		frmAddressBookTutorial.setBounds(100, 100, 615, 364);
 		frmAddressBookTutorial.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frmAddressBookTutorial.getContentPane().setLayout(null);
@@ -407,8 +405,6 @@ public class AddressBookPART3 {
 			}
 		});
 		
-		
-		
 		/*
 		 * PART 3: SIDE PANEL > LOAD FILE... (Complete!)
 		 * https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
@@ -465,19 +461,17 @@ public class AddressBookPART3 {
 			    	System.out.println("FILE LOADED SUCCESSFULLY!");
 			    }
 			    catch (IOException ex1) {
-			    	// FILE I/O Exception
 			    	JOptionPane.showMessageDialog(null, "Error! Cannot load chosen file.");
 			    	System.out.println(ex1);
 			    }
 			    catch (Exception ex2) {
-			    	// GENERAL Exception
 			    	JOptionPane.showMessageDialog(null, "Error! Cannot create address objects.");
 			    	System.out.println(ex2);
 			    }
 			}
 		});
 		
-		// PART 2: SIDE PANEL > SAVE FILE... (Incomplete)
+		// PART 4: SIDE PANEL > SAVE FILE... (Complete!)
 		btnMenuSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    chooser.setFileFilter(filter);
@@ -485,7 +479,29 @@ public class AddressBookPART3 {
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 				       System.out.println("You chose to save " + chooser.getSelectedFile().getName() + ": " +
 					            chooser.getSelectedFile().getAbsolutePath()); // Absolute Path & Filename
-				    	System.out.println("SAVE IS NOT CODED YET.");
+			    }
+			    
+			    try {
+			    	FileWriter fw = new FileWriter (chooser.getSelectedFile().getAbsolutePath());
+			    	PrintWriter pw = new PrintWriter (fw);
+			    	Object[] output = contactList.toArray();
+			    	
+			    	// Provide the current date and time the file was saved
+			    	// https://www.javatpoint.com/java-get-current-date
+			    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+			    	LocalDateTime now = LocalDateTime.now();  
+
+			    	// Print each address object in .csv format, row-by-row
+			    	pw.println("LAST,FIRST,AGE,COUNTRY,PHONE,EMAIL (Saved on: " + dtf.format(now) + ")");
+			    	for (int i = 0; i < output.length; i++) {
+			    		pw.println(((Address)output[i]).toString());
+			    	}
+			    	pw.close();
+			    	System.out.println("FILE SAVED SUCCESSFULLY @ " + dtf.format(now));
+			    }
+			    catch (IOException ex) {
+			    	JOptionPane.showMessageDialog(null, "Error! Cannot save file.");
+			    	System.out.println(ex);
 			    }
 			}
 		});
@@ -546,7 +562,6 @@ public class AddressBookPART3 {
 			}
 		});
 		
-
 		/*
 		 * 	PART 3: VIEW > SORT CONTACTS BY AGE...
 		 * 	https://stackoverflow.com/q/33190156/11542212
@@ -607,7 +622,7 @@ public class AddressBookPART3 {
 			    viewList.setSelectedIndex(0);
 		    	Address selectedContact = contactList.get(0);
 		    	String[] data = selectedContact.getData();
-
+		    	
 		    	lblFirst.setText(data[0]);
 		    	lblLast.setText(data[1]);
 		    	lblAge.setText(data[2]);
@@ -622,9 +637,7 @@ public class AddressBookPART3 {
 		MouseListener mouseListener = new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e) {
 		        if (e.getClickCount() == 2) { // 2 = double-click
-		           String selectedItem = (String) viewList.getSelectedValue();
 		           int index = viewList.getSelectedIndex();
-		           System.out.println("index: " + index + " value: " + selectedItem);
 		           
 		           Address selectedContact = contactList.get(index);
 		           String[] data = selectedContact.getData();
@@ -645,9 +658,7 @@ public class AddressBookPART3 {
 		viewList.addKeyListener(new KeyAdapter(){
 			public void keyPressed(KeyEvent e){
 			    if (e.getKeyCode() == KeyEvent.VK_ENTER){
-			    	String selectedItem = (String) viewList.getSelectedValue();
 			    	int index = viewList.getSelectedIndex();
-			    	System.out.println("index: " + index + " value: " + selectedItem);
 
 			    	Address selectedContact = contactList.get(index);
 			    	String[] data = selectedContact.getData();
