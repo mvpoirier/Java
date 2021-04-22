@@ -28,9 +28,21 @@ public class Address {
 		return data;
 	}
 	
+	public String getLast () {
+		return last;
+	}
+	
 	public String getFullName () {
-		String name = last + ", " + first;
-		return name;
+		return last + ", " + first;
+	}
+	
+	public int getAge () {
+		return age;
+	}
+	
+	@Override
+	public String toString() {
+		return first + " " + last + " " + age + " " + country + " " + phone + " " + email + "\n";
 	}
 	
 }

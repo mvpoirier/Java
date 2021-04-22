@@ -3,9 +3,11 @@
  * DATE:	March 23, 2021
  * PURPOSE: Tutorial on how to use GUIs, File IO, and Try/Catch Exceptions 
  * 			in order to read/write to a CSV file efficiently.
+ * 
+ * 			PART 1 - GUI Framework & Basic Functions
  */
 
-// WINDOW BUILDER DESIGN MODE
+// WINDOW BUILDER COMPONENTS
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,7 +61,7 @@ public class AddressBookPART1 {
 	 */
 	private void initialize() {
 		frmAddressBookTutorial = new JFrame();
-		frmAddressBookTutorial.setTitle("Address Book Tutorial");
+		frmAddressBookTutorial.setTitle("Address Book Tutorial - PART 1");
 		frmAddressBookTutorial.setBounds(100, 100, 586, 364);
 		frmAddressBookTutorial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddressBookTutorial.getContentPane().setLayout(null);

@@ -1,48 +1,61 @@
 /*
  * NAME:	Mr. Poirier
- * DATE:	March 23, 2021
+ * DATE:	April 22, 2021
  * PURPOSE: Tutorial on how to use GUIs, File IO, and Try/Catch Exceptions 
  * 			in order to read/write to a CSV file efficiently.
  * 
- * 			PART 2 - JButton actions, JFileChooser, custom JOptionPane exit dialog
+ * 			PART 3 - Address Class, File I/O, Linked Lists, Adding/Removing/Sorting
  */
 
-// WINDOW BUILDER COMPONENTS
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.JButton;
+// IMPORTS NEEDED (Eclipse: Command + Shift + O)
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.border.LineBorder;
-import javax.swing.JList;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-// JOPTIONPANE DIALOG BOXES
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon; // Add custom dialog icon
-
-// JFILECHOOSER
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
 
-public class AddressBookPART2 {
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon; // Add custom dialog icon
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+
+public class AddressBookPART3 {
 
 	private JFrame frmAddressBookTutorial;
+	private LinkedList<Address> contactList = new LinkedList<Address>();
 
 	/*
 	 * SETUP JFileChooser
@@ -60,7 +73,7 @@ public class AddressBookPART2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddressBookPART2 window = new AddressBookPART2();
+					AddressBookPART3 window = new AddressBookPART3();
 					window.frmAddressBookTutorial.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,7 +85,7 @@ public class AddressBookPART2 {
 	/**
 	 * Create the application.
 	 */
-	public AddressBookPART2() {
+	public AddressBookPART3() {
 		initialize();
 	}
 
@@ -81,8 +94,8 @@ public class AddressBookPART2 {
 	 */
 	private void initialize() {
 		frmAddressBookTutorial = new JFrame();
-		frmAddressBookTutorial.setTitle("Address Book Tutorial - PART 2");
-		frmAddressBookTutorial.setBounds(100, 100, 586, 364);
+		frmAddressBookTutorial.setTitle("Address Book Tutorial - PART 3");
+		frmAddressBookTutorial.setBounds(100, 100, 615, 364);
 		frmAddressBookTutorial.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frmAddressBookTutorial.getContentPane().setLayout(null);
 		
@@ -92,7 +105,7 @@ public class AddressBookPART2 {
 		fl_top.setAlignOnBaseline(true);
 		top.setBorder(new LineBorder(new Color(0, 0, 0)));
 		top.setBackground(new Color(47, 79, 79));
-		top.setBounds(6, 6, 574, 26);
+		top.setBounds(6, 6, 603, 26);
 		frmAddressBookTutorial.getContentPane().add(top);
 		
 		/*
@@ -134,7 +147,7 @@ public class AddressBookPART2 {
 		
 		JPanel main = new JPanel();
 		main.setBorder(new LineBorder(new Color(0, 0, 0)));
-		main.setBounds(145, 37, 435, 299);
+		main.setBounds(145, 37, 464, 299);
 		frmAddressBookTutorial.getContentPane().add(main);
 		main.setLayout(new CardLayout(0, 0));
 		
@@ -147,14 +160,29 @@ public class AddressBookPART2 {
 		main.add(view, "name_14353414839215");
 		view.setLayout(null);
 		
-		JList<String> viewList = new JList<String>();
+	    // JList Tutorial
+	    // https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
+	    DefaultListModel<String> listModel = new DefaultListModel<String>();
+	    //listModel.addElement("Test");
+		JList<String> viewList = new JList<String>(listModel);
+		
 		viewList.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		viewList.setBounds(6, 18, 136, 233);
-		view.add(viewList);
+		//view.add(viewList);
+		
+		//https://www.tutorialspoint.com/how-to-add-scrollbar-to-jlist-in-java
+	    JPanel scrollPanel = new JPanel(new BorderLayout());
+	    JScrollPane scrollPane = new JScrollPane();
+	    scrollPane.setViewportView(viewList);
+	    viewList.setLayoutOrientation(JList.VERTICAL);
+	    scrollPanel.add(scrollPane);
+	    scrollPanel.setBounds(6, 18, 145, 233);
+	    scrollPanel.setVisible(true);
+	    view.add(scrollPanel);
 		
 		JPanel viewEntry = new JPanel();
 		viewEntry.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "View Contact", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		viewEntry.setBounds(154, 18, 273, 233);
+		viewEntry.setBounds(174, 18, 282, 233);
 		view.add(viewEntry);
 		viewEntry.setLayout(new GridLayout(6, 2, 0, 0));
 		
@@ -165,7 +193,7 @@ public class AddressBookPART2 {
 		
 		JLabel lblFirst = new JLabel("N/A");
 		lblFirst.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFirst.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		lblFirst.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		viewEntry.add(lblFirst);
 		
 		JLabel lblView2 = new JLabel("Last Name: ");
@@ -175,7 +203,7 @@ public class AddressBookPART2 {
 		
 		JLabel lblLast = new JLabel("N/A");
 		lblLast.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLast.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		lblLast.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		viewEntry.add(lblLast);
 		
 		JLabel lblView3 = new JLabel("Age: ");
@@ -185,7 +213,7 @@ public class AddressBookPART2 {
 		
 		JLabel lblAge = new JLabel("N/A");
 		lblAge.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAge.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		lblAge.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		viewEntry.add(lblAge);
 		
 		JLabel lblView4 = new JLabel("Country: ");
@@ -195,7 +223,7 @@ public class AddressBookPART2 {
 		
 		JLabel lblCountry = new JLabel("N/A");
 		lblCountry.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCountry.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		lblCountry.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		viewEntry.add(lblCountry);
 		
 		JLabel lblView5 = new JLabel("Phone: ");
@@ -205,7 +233,7 @@ public class AddressBookPART2 {
 		
 		JLabel lblPhone = new JLabel("N/A");
 		lblPhone.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPhone.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		lblPhone.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		viewEntry.add(lblPhone);
 		
 		JLabel lblView6 = new JLabel("Email: ");
@@ -219,22 +247,27 @@ public class AddressBookPART2 {
 		viewEntry.add(lblEmail);
 		
 		JButton btnViewNext = new JButton("Next");
-		btnViewNext.setBounds(234, 263, 75, 29);
+		btnViewNext.setBounds(240, 263, 75, 29);
 		view.add(btnViewNext);
 		
 		JButton btnViewPrev = new JButton("Prev");
-		btnViewPrev.setBounds(164, 263, 75, 29);
+		btnViewPrev.setBounds(174, 263, 75, 29);
 		view.add(btnViewPrev);
 		
-		JButton btnSort = new JButton("Sort...");
-		btnSort.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
-		btnSort.setBounds(28, 263, 93, 29);
-		view.add(btnSort);
+		JButton btnSortAge = new JButton("Sort (Age)");
+		btnSortAge.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		btnSortAge.setBounds(77, 249, 75, 29);
+		view.add(btnSortAge);
 		
 		JButton btnViewDelete = new JButton("Delete");
 		btnViewDelete.setForeground(Color.RED);
-		btnViewDelete.setBounds(359, 263, 68, 29);
+		btnViewDelete.setBounds(388, 263, 68, 29);
 		view.add(btnViewDelete);
+		
+		JButton btnSortName = new JButton("Sort (Name)");
+		btnSortName.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		btnSortName.setBounds(6, 249, 75, 29);
+		view.add(btnSortName);
 		
 		/*
 		 * ADD JPANEL
@@ -364,9 +397,9 @@ public class AddressBookPART2 {
 			}
 		});
 		
+		// LOAD FILE...
 		btnMenuLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// LOAD/OPEN FILE...
 			    chooser.setFileFilter(filter);
 				returnVal = chooser.showOpenDialog(frmAddressBookTutorial);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -375,12 +408,51 @@ public class AddressBookPART2 {
 			    		   chooser.getSelectedFile().getName() + ": " +
 			    		   chooser.getSelectedFile().getAbsolutePath());
 			    }
+			    
+			    try {
+			    	FileReader fr = new FileReader(chooser.getSelectedFile().getAbsolutePath());
+			    	BufferedReader br = new BufferedReader(fr);
+			    	String input;
+			    	String[] data;
+			    	
+			    	br.readLine(); // ignore header
+			    	input = br.readLine();
+			    	
+			    	while (input != null) {
+			    		data = input.split(",");
+			    		contactList.add(new Address(data[0], data[1], Integer.parseInt(data[2]), data[3], data[4], data[5]));
+			    		input = br.readLine();
+			    	}
+			    	// System.out.println(contactList.toString());
+			    }
+			    catch (IOException ex) {
+			    	System.out.println("ERROR Reading File!");
+			    }
+			    
+			    // https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
+			    // https://stackoverflow.com/q/2183669/11542212
+			    listModel.clear();
+			    for (Address address : contactList)
+			    	listModel.addElement(address.getFullName());
+			    
+			    lblMenuNum.setText(String.valueOf(contactList.size()));
+			    
+			    viewList.setSelectedIndex(0);
+		    	Address selectedContact = contactList.get(0);
+		    	String[] data = selectedContact.getData();
+
+		    	lblFirst.setText(data[0]);
+		    	lblLast.setText(data[1]);
+		    	lblAge.setText(data[2]);
+		    	lblCountry.setText(data[3]);
+		    	lblPhone.setText(data[4]);
+		    	lblEmail.setText(data[5]);
 			}
 		});
 		
+		// SAVE FILE...
 		btnMenuSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// SAVE FILE...
 			    chooser.setFileFilter(filter);
 				returnVal = chooser.showSaveDialog(frmAddressBookTutorial);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -390,16 +462,53 @@ public class AddressBookPART2 {
 			}
 		});
 		
-		
+		// VIEW > NEXT CONTACT in LIST...
 		btnViewNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// VIEW > NEXT CONTACT in LIST...
+			    int index = viewList.getSelectedIndex();
+			    if (index == -1 || index == contactList.size() - 1)
+			    	index = 0;
+			    else
+			    	index = index + 1;
+			    
+				viewList.setSelectedIndex(index);
+		    	Address selectedContact = contactList.get(index);
+		    	String[] data = selectedContact.getData();
+
+		    	lblFirst.setText(data[0]);
+		    	lblLast.setText(data[1]);
+		    	lblAge.setText(data[2]);
+		    	lblCountry.setText(data[3]);
+		    	lblPhone.setText(data[4]);
+		    	lblEmail.setText(data[5]);
+		    	
+		    	// Consider adding JList Auto Scrolling...
+		    	// https://stackoverflow.com/questions/2132444/jscrollpane-and-jlist-auto-scroll
 			}
 		});
 		
+		// VIEW > PREVIOUS CONTACT in LIST...
 		btnViewPrev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// VIEW > PREVIOUS CONTACT in LIST...
+			    int index = viewList.getSelectedIndex();
+			    if (index == -1 || index == 0)
+			    	index = contactList.size() - 1;
+			    else
+			    	index = index - 1;
+			    
+				viewList.setSelectedIndex(index);
+		    	Address selectedContact = contactList.get(index);
+		    	String[] data = selectedContact.getData();
+
+		    	lblFirst.setText(data[0]);
+		    	lblLast.setText(data[1]);
+		    	lblAge.setText(data[2]);
+		    	lblCountry.setText(data[3]);
+		    	lblPhone.setText(data[4]);
+		    	lblEmail.setText(data[5]);
+		    	
+		    	// Consider adding JList Auto Scrolling...
+		    	// https://stackoverflow.com/questions/2132444/jscrollpane-and-jlist-auto-scroll
 			}
 		});
 		
@@ -415,10 +524,112 @@ public class AddressBookPART2 {
 			}
 		});
 		
-		btnSort.addActionListener(new ActionListener() {
+		// VIEW > SORT CONTACTS BY AGE...
+		btnSortAge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// VIEW > SORT CONTACTS...
+				// Sorting a LinkedList by it's stored object values
+				// https://stackoverflow.com/q/33190156/11542212
+				Collections.sort(contactList, new Comparator<Address>() {
+				    @Override
+				    public int compare(Address a1, Address a2) {
+				        return a1.getAge() - a2.getAge();
+				    }
+				});
+				
+			    // Clear, Add, and Refresh List
+				// https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
+			    // https://stackoverflow.com/q/2183669/11542212
+			    listModel.clear();
+			    for (Address address : contactList)
+			    	listModel.addElement(address.getFullName());	
+			    
+			    viewList.setSelectedIndex(0);
+		    	Address selectedContact = contactList.get(0);
+		    	String[] data = selectedContact.getData();
+
+		    	lblFirst.setText(data[0]);
+		    	lblLast.setText(data[1]);
+		    	lblAge.setText(data[2]);
+		    	lblCountry.setText(data[3]);
+		    	lblPhone.setText(data[4]);
+		    	lblEmail.setText(data[5]);
 			}
 		});
+		
+		// VIEW > SORT CONTACTS BY LAST NAME...
+		btnSortName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Sorting a LinkedList by it's stored object values
+				// https://stackoverflow.com/q/33190156/11542212
+				Collections.sort(contactList, new Comparator<Address>() {
+				    @Override
+				    public int compare(Address a1, Address a2) {
+				        return a1.getLast().compareTo(a2.getLast());
+				    }
+				});
+				
+			    // Clear, Add, and Refresh List
+				// https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
+			    // https://stackoverflow.com/q/2183669/11542212
+			    listModel.clear();
+			    for (Address address : contactList)
+			    	listModel.addElement(address.getFullName());	
+			    
+			    viewList.setSelectedIndex(0);
+		    	Address selectedContact = contactList.get(0);
+		    	String[] data = selectedContact.getData();
+
+		    	lblFirst.setText(data[0]);
+		    	lblLast.setText(data[1]);
+		    	lblAge.setText(data[2]);
+		    	lblCountry.setText(data[3]);
+		    	lblPhone.setText(data[4]);
+		    	lblEmail.setText(data[5]);
+			}
+		});
+		
+		// USER DOUBLE-CLICKS CONTACT > DISPLAY IN VIEW PANEL
+		MouseListener mouseListener = new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		        if (e.getClickCount() == 2) {
+		           String selectedItem = (String) viewList.getSelectedValue();
+		           int index = viewList.getSelectedIndex();
+		           System.out.println("index: " + index + " value: " + selectedItem);
+		           
+		           Address selectedContact = contactList.get(index);
+		           String[] data = selectedContact.getData();
+		           
+		           lblFirst.setText(data[0]);
+		           lblLast.setText(data[1]);
+		           lblAge.setText(data[2]);
+		           lblCountry.setText(data[3]);
+		           lblPhone.setText(data[4]);
+		           lblEmail.setText(data[5]);
+		         }
+		    }
+		};
+		viewList.addMouseListener(mouseListener);
+		
+		// USER SELECTS CONTACT AND PRESSES ENTER KEY > DISPLAY IN VIEW PANEL
+		viewList.addKeyListener(new KeyAdapter(){
+			public void keyPressed(KeyEvent e){
+			    if (e.getKeyCode() == KeyEvent.VK_ENTER){
+			    	String selectedItem = (String) viewList.getSelectedValue();
+			    	int index = viewList.getSelectedIndex();
+			    	System.out.println("index: " + index + " value: " + selectedItem);
+
+			    	Address selectedContact = contactList.get(index);
+			    	String[] data = selectedContact.getData();
+
+			    	lblFirst.setText(data[0]);
+			    	lblLast.setText(data[1]);
+			    	lblAge.setText(data[2]);
+			    	lblCountry.setText(data[3]);
+			    	lblPhone.setText(data[4]);
+			    	lblEmail.setText(data[5]);
+			}
+			}
+			});
+
 	}
 }
