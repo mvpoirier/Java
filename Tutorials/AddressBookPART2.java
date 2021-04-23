@@ -1,6 +1,7 @@
 /*
  * NAME:	Mr. Poirier
  * DATE:	March 23, 2021
+ * 			(Updated April 22, 2021)
  * PURPOSE: Tutorial on how to use GUIs, File IO, and Try/Catch Exceptions 
  * 			in order to read/write to a CSV file efficiently.
  * 

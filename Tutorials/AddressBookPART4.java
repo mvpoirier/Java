@@ -1,6 +1,6 @@
 /*
  * NAME:	Mr. Poirier
- * DATE:	April 22, 2021
+ * DATE:	April 23, 2021
  * PURPOSE: Tutorial on how to use GUIs, File IO, and Try/Catch Exceptions 
  * 			in order to read/write to a CSV file efficiently.
  *
@@ -24,14 +24,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -58,7 +61,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class AddressBookPART4 {
 
-	private JFrame frmAddressBookTutorial;
+	private JFrame frmAddressBook;
 	private LinkedList<Address> contactList = new LinkedList<Address>();
 
 	/*
@@ -78,7 +81,7 @@ public class AddressBookPART4 {
 			public void run() {
 				try {
 					AddressBookPART4 window = new AddressBookPART4();
-					window.frmAddressBookTutorial.setVisible(true);
+					window.frmAddressBook.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -97,11 +100,11 @@ public class AddressBookPART4 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmAddressBookTutorial = new JFrame();
-		frmAddressBookTutorial.setTitle("Address Book Tutorial - PART 4");
-		frmAddressBookTutorial.setBounds(100, 100, 615, 364);
-		frmAddressBookTutorial.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frmAddressBookTutorial.getContentPane().setLayout(null);
+		frmAddressBook = new JFrame();
+		frmAddressBook.setTitle("Address Book Tutorial - PART 4");
+		frmAddressBook.setBounds(100, 100, 615, 364);
+		frmAddressBook.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frmAddressBook.getContentPane().setLayout(null);
 		
 		JPanel top = new JPanel();
 		FlowLayout fl_top = (FlowLayout) top.getLayout();
@@ -110,7 +113,7 @@ public class AddressBookPART4 {
 		top.setBorder(new LineBorder(new Color(0, 0, 0)));
 		top.setBackground(new Color(47, 79, 79));
 		top.setBounds(6, 6, 603, 26);
-		frmAddressBookTutorial.getContentPane().add(top);
+		frmAddressBook.getContentPane().add(top);
 		
 		/*
 		 * GUI COMPONENTS ADDED TO JFRAME
@@ -126,7 +129,7 @@ public class AddressBookPART4 {
 		flowLayout.setVgap(20);
 		side.setBackground(new Color(173, 216, 230));
 		side.setBounds(6, 37, 135, 299);
-		frmAddressBookTutorial.getContentPane().add(side);
+		frmAddressBook.getContentPane().add(side);
 		
 		JButton btnMenuView = new JButton("View");
 		side.add(btnMenuView);
@@ -152,7 +155,7 @@ public class AddressBookPART4 {
 		JPanel main = new JPanel();
 		main.setBorder(new LineBorder(new Color(0, 0, 0)));
 		main.setBounds(145, 37, 464, 299);
-		frmAddressBookTutorial.getContentPane().add(main);
+		frmAddressBook.getContentPane().add(main);
 		main.setLayout(new CardLayout(0, 0));
 		
 		/*
@@ -383,12 +386,12 @@ public class AddressBookPART4 {
 		});
 		
 		// PART 2: WINDOW CLOSING > DOUBLE-CHECK EXIT...
-		frmAddressBookTutorial.addWindowListener(new WindowAdapter() {
+		frmAddressBook.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				Object[] options = {"Yep!", "Nope."};
 		        ImageIcon icon = new ImageIcon("icon_exit.png");
-				int exitCheck = JOptionPane.showOptionDialog(frmAddressBookTutorial, // parent
+				int exitCheck = JOptionPane.showOptionDialog(frmAddressBook, // parent
 						"Are you sure you want to exit?\nAny unsaved contacts will be lost!", // message
 						"Exit Confirmation", // title
 						JOptionPane.YES_NO_OPTION, // option type
@@ -413,7 +416,7 @@ public class AddressBookPART4 {
 		btnMenuLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    chooser.setFileFilter(filter);
-				returnVal = chooser.showOpenDialog(frmAddressBookTutorial);
+				returnVal = chooser.showOpenDialog(frmAddressBook);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 			    	System.out.println("You chose to open " + 
 			    		   chooser.getSelectedFile().getName() + ": " +
@@ -441,6 +444,9 @@ public class AddressBookPART4 {
 			    	
 			    	// JList: Clear & Add Address Objects
 				    listModel.clear();
+				    
+				    // A "for each" or "enhanced" for loop
+				    // https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html
 				    for (Address address : contactList)
 				    	listModel.addElement(address.getFullName());
 				    lblMenuNum.setText(String.valueOf(contactList.size()));
@@ -461,11 +467,11 @@ public class AddressBookPART4 {
 			    	System.out.println("FILE LOADED SUCCESSFULLY!");
 			    }
 			    catch (IOException ex1) {
-			    	JOptionPane.showMessageDialog(null, "Error! Cannot load chosen file.");
+			    	JOptionPane.showMessageDialog(frmAddressBook, "Cannot load chosen file.", "ERROR!", JOptionPane.WARNING_MESSAGE);
 			    	System.out.println(ex1);
 			    }
 			    catch (Exception ex2) {
-			    	JOptionPane.showMessageDialog(null, "Error! Cannot create address objects.");
+			    	JOptionPane.showMessageDialog(frmAddressBook, "Cannot create address objects.", "ERROR!", JOptionPane.WARNING_MESSAGE);
 			    	System.out.println(ex2);
 			    }
 			}
@@ -475,7 +481,7 @@ public class AddressBookPART4 {
 		btnMenuSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    chooser.setFileFilter(filter);
-				returnVal = chooser.showSaveDialog(frmAddressBookTutorial);
+				returnVal = chooser.showSaveDialog(frmAddressBook);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
 				       System.out.println("You chose to save " + chooser.getSelectedFile().getName() + ": " +
 					            chooser.getSelectedFile().getAbsolutePath()); // Absolute Path & Filename
@@ -499,9 +505,13 @@ public class AddressBookPART4 {
 			    	pw.close();
 			    	System.out.println("FILE SAVED SUCCESSFULLY @ " + dtf.format(now));
 			    }
-			    catch (IOException ex) {
-			    	JOptionPane.showMessageDialog(null, "Error! Cannot save file.");
-			    	System.out.println(ex);
+			    catch (IOException ex1) {
+			    	JOptionPane.showMessageDialog(frmAddressBook, "Error! Cannot save file.");
+			    	System.out.println(ex1);
+			    }
+			    catch (Exception ex2) {
+			    	JOptionPane.showMessageDialog(frmAddressBook, "Error! Cannot save file.");
+			    	System.out.println(ex2);
 			    }
 			}
 		});
@@ -580,6 +590,9 @@ public class AddressBookPART4 {
 				
 			    // Clear, Add, and Refresh List
 			    listModel.clear();
+			    
+			    // A "for each" or "enhanced" for loop
+			    // https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html
 			    for (Address address : contactList)
 			    	listModel.addElement(address.getFullName());	
 			    
@@ -615,6 +628,9 @@ public class AddressBookPART4 {
 				
 			    // Clear, Add, and Refresh List
 			    listModel.clear();
+			    
+			    // A "for each" or "enhanced" for loop
+			    // https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html
 			    for (Address address : contactList)
 			    	listModel.addElement(address.getFullName());	
 			    
@@ -639,15 +655,17 @@ public class AddressBookPART4 {
 		        if (e.getClickCount() == 2) { // 2 = double-click
 		           int index = viewList.getSelectedIndex();
 		           
-		           Address selectedContact = contactList.get(index);
-		           String[] data = selectedContact.getData();
-		           
-		           lblFirst.setText(data[0]);
-		           lblLast.setText(data[1]);
-		           lblAge.setText(data[2]);
-		           lblCountry.setText(data[3]);
-		           lblPhone.setText(data[4]);
-		           lblEmail.setText(data[5]);
+		           if (index != -1) {
+			           Address selectedContact = contactList.get(index);
+			           String[] data = selectedContact.getData();
+			           
+			           lblFirst.setText(data[0]);
+			           lblLast.setText(data[1]);
+			           lblAge.setText(data[2]);
+			           lblCountry.setText(data[3]);
+			           lblPhone.setText(data[4]);
+			           lblEmail.setText(data[5]);
+		           }
 		         }
 		    }
 		};
@@ -660,15 +678,17 @@ public class AddressBookPART4 {
 			    if (e.getKeyCode() == KeyEvent.VK_ENTER){
 			    	int index = viewList.getSelectedIndex();
 
-			    	Address selectedContact = contactList.get(index);
-			    	String[] data = selectedContact.getData();
+			    	if (index != -1) {
+			    		Address selectedContact = contactList.get(index);
+			    		String[] data = selectedContact.getData();
 
-			    	lblFirst.setText(data[0]);
-			    	lblLast.setText(data[1]);
-			    	lblAge.setText(data[2]);
-			    	lblCountry.setText(data[3]);
-			    	lblPhone.setText(data[4]);
-			    	lblEmail.setText(data[5]);
+			    		lblFirst.setText(data[0]);
+			    		lblLast.setText(data[1]);
+			    		lblAge.setText(data[2]);
+			    		lblCountry.setText(data[3]);
+			    		lblPhone.setText(data[4]);
+			    		lblEmail.setText(data[5]);
+			    	}
 			    }
 			}
 		});
@@ -676,12 +696,94 @@ public class AddressBookPART4 {
 		// PART 4: ADD > ADD CONTACT
 		btnAddContact.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Address newContact;
+				String first, last, country, phone, email;
+				int age;
+				
+				try {
+					first = txtFirst.getText();
+					last = txtLast.getText();
+					age = Integer.parseInt(txtAge.getText());
+					country = txtCountry.getText();
+					phone = txtPhone.getText();
+					email = txtEmail.getText();
+					
+					// Create contact, add to LinkedList
+					newContact = new Address (first, last, age, country, phone, email);
+					contactList.add(newContact);
+					
+				    // Clear, add, and refresh JList
+				    listModel.clear();
+				    
+				    // A "for each" or "enhanced" for loop
+				    // https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html
+				    for (Address address : contactList)
+				    	listModel.addElement(address.getFullName());	
+				    
+				    // Prompt that it has been added successfully, and clear text boxes
+				    txtFirst.setText("");
+				    txtLast.setText("");
+				    txtAge.setText("");
+				    txtCountry.setText("");
+				    txtPhone.setText("");
+				    txtEmail.setText("");
+				    
+				    // Change number of contacts on side panel
+				    lblMenuNum.setText(String.valueOf(contactList.size()));
+					
+				}
+				catch (Exception ex) {
+			    	JOptionPane.showMessageDialog(frmAddressBook, "Error! Could not create a new contact.");
+			    	System.out.println(ex);
+				}
 			}
 		});
 		
 		// PART 4: VIEW > DELETE SELECTED CONTACT...
 		btnViewDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				int index = viewList.getSelectedIndex();
+				
+				if (index != -1) {
+				    // Remove item, and refresh JList
+					contactList.remove(index);
+				    listModel.clear();
+				    
+				    // A "for each" or "enhanced" for loop
+				    // https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html
+				    for (Address address : contactList)
+				    	listModel.addElement(address.getFullName());
+				    
+				    // Change number of contacts on side panel
+				    lblMenuNum.setText(String.valueOf(contactList.size()));
+				    
+				    // If contacts are not empty, display first item
+				    if (!contactList.isEmpty()) {
+				    	viewList.setSelectedIndex(0);
+				    	Address selectedContact = contactList.get(0);
+				    	String[] data = selectedContact.getData();
+
+				    	lblFirst.setText(data[0]);
+				    	lblLast.setText(data[1]);
+				    	lblAge.setText(data[2]);
+				    	lblCountry.setText(data[3]);
+				    	lblPhone.setText(data[4]);
+				    	lblEmail.setText(data[5]);
+				    }
+				    else {
+			    		lblFirst.setText("N/A");
+			    		lblLast.setText("N/A");
+			    		lblAge.setText("N/A");
+			    		lblCountry.setText("N/A");
+			    		lblPhone.setText("N/A");
+			    		lblEmail.setText("N/A");
+				    }
+				}
+				else {
+					JOptionPane.showMessageDialog(frmAddressBook, "Error! Must first select a contact from the list.");
+				}
+				
 			}
 		});
 	}
